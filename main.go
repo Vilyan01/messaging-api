@@ -5,7 +5,6 @@ import (
 )
 
 func main() {
-	usr := data.NewUser("hello@go.com", "Shankmeister")
+	usr := data.NewClient("hello@go.com")
 	usr.Save()
-	usr.Type()
 }
