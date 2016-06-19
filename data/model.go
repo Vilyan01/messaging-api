@@ -1,7 +1,7 @@
 package data
 
 import (
-	"fmt"
+	"log"
 )
 
 /*
@@ -9,7 +9,7 @@ import (
 	entry and retrieval
 */
 type Model struct {
-	TableName string `json:"-"` // The name of the table that each model will be saved in.
+	TableName string `json:"-",gorethink:"-"` // The name of the table that each model will be saved in.
 }
 
 /*
@@ -17,5 +17,9 @@ type Model struct {
 	just print the TableName for now.
 */
 func (m Model) Save() {
-	fmt.Println(m.TableName)
+	conn, err := NewDBConnection()
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
+	conn.InsertObject(m)
 }
