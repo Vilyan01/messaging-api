@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/Vilyan01/messaging-api/handlers"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/render"
 )
@@ -16,6 +17,7 @@ func main() {
 	m.Use(render.Renderer())
 	// Test function for now...
 	m.Get("/", RenderTest)
+	m.Get("/users/:id", handlers.GetUser)
 	// Start the API
 	m.Run()
 }
