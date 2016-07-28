@@ -11,6 +11,23 @@ type Database struct {
 	DB *gorm.DB
 }
 
+var (
+	// The data models that are used throughout this app will use this to
+	// communicate.
+	db Database
+)
+
+func init() {
+	var err error
+	// Create the database for the subsequent models to use
+	db, err = NewDatabase("messaging_test")
+	if err != nil {
+		initErr := fmt.Sprintf("Unable to initialize database connection: %v", err)
+		fmt.Println(initErr)
+		os.Exit(1)
+	}
+}
+
 func NewDatabase(dbName string) (Database, error) {
 	// variables to hold data
 	var (
