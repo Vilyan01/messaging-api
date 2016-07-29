@@ -26,6 +26,11 @@ func init() {
 		fmt.Println(initErr)
 		os.Exit(1)
 	}
+
+	db.DB.AutoMigrate(&User{})
+	db.DB.AutoMigrate(&Conversation{})
+	db.DB.AutoMigrate(&Message{})
+	db.DB.AutoMigrate(&Session{})
 }
 
 func NewDatabase(dbName string) (Database, error) {
