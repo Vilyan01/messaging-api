@@ -9,8 +9,8 @@ import (
 */
 type User struct {
 	gorm.Model
-	Username       string         `json:"username" gorm:"type:varchar(25);unique_index"`
-	Email          string         `json:"email" gorm:"type:varchar(100);unique_index"`
+	Username       string         `json:"username" gorm:"type:varchar(25);unique_index" binding:"required"`
+	Email          string         `json:"email" gorm:"type:varchar(100);unique_index" binding:"required"`
 	Conversations  []Conversation `json:"conversations" gorm:"many2many:user_conversations;"`
 	HashedPassword string         `json:"-"`
 	Session        Session        `json:"-"`
@@ -19,6 +19,6 @@ type User struct {
 
 func FindUserByID(id int) (User, error) {
 	var user User
-	err := db.DB.First(&user, 1).Error
+	err := db.DB.First(&user, id).Error
 	return user, err
 }
