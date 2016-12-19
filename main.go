@@ -13,7 +13,7 @@ func main() {
 
 	// define routes
 	r.HandleFunc("/users/{id}", handlers.GetUser)
-
+	r.HandleFunc("/users", handlers.CreateUser)
 	// start server
 	log.Fatal(http.ListenAndServe(":3000", r))
 }

@@ -1,10 +1,12 @@
 package handlers
 
 import (
-	"github.com/go-martini/martini"
+	"github.com/gorilla/mux"
+	"net/http"
 	"strconv"
 )
 
-func IdFromParams(p martini.Params) (int, error) {
-	return strconv.Atoi(p["id"])
+func IdFromRequest(r *http.Request) (int, error) {
+	v := mux.Vars(r)
+	return strconv.Atoi(v["id"])
 }

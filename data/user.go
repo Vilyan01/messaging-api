@@ -22,3 +22,7 @@ func FindUserByID(id int) (User, error) {
 	err := db.DB.First(&user, id).Error
 	return user, err
 }
+
+func (u User) SaveUser() error {
+	return db.DB.Create(&u).Error
+}
